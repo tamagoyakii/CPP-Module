@@ -1,5 +1,4 @@
 #include <iostream>
-#include <cctype>
 # define DEFAULT "* LOUD AND UNBEARABLE FEEDBACK NOISE *"
 
 int main(int ac, char **av) {
@@ -9,7 +8,7 @@ int main(int ac, char **av) {
 	}
 	for (int i = 1; i < ac; i++) {
 		std::string s(av[i]);
-		for (int j = 0; j < int(s.size()); j++) std::cout << char(toupper(s[j]));
+		for (int j = 0; j < (int) s.size(); j++) std::cout << (char) toupper(s[j]);
 	}
 	std::cout << std::endl;
 	return (0);
