@@ -1,7 +1,7 @@
 #include "Zombie.hpp"
 
 void makeHeapZombie() {
-	Zombie *heap_zombie = newZombie("HEAP");
+	Zombie* heap_zombie = newZombie("HEAP");
 	heap_zombie->announce();
 	delete heap_zombie;
 }
