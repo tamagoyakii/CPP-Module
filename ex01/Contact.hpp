@@ -13,17 +13,18 @@ class Contact {
 	public:
 		Contact();
 		~Contact();
-		std::string getFirstName() const;
-		std::string getLastName() const;
-		std::string getNickname() const;
-		std::string getPhoneNumber() const;
-		std::string getDarkestSecret() const;
 		void setFirstName();
 		void setLastName();
 		void setNickname();
 		void setPhoneNumber();
 		void setDarkestSecret();
-		void show() const;
+		void show();
+		std::string replaceTab(std::string value);
+		std::string getFirstName(int sub);
+		std::string getLastName(int sub);
+		std::string getNickname(int sub);
+		std::string getPhoneNumber();
+		std::string getDarkestSecret();
 };
 
 #endif

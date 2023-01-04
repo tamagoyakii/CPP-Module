@@ -13,7 +13,7 @@ class Phonebook {
 		~Phonebook();
 		void addContact();
 		void searchContact();
-		void showContact(int index);
+		void showContact();
 };
 
 #endif
