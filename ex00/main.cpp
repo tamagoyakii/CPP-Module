@@ -7,8 +7,8 @@ void makeHeapZombie() {
 }
 
 int main() {
-	Zombie default_zombie;
-	default_zombie.announce();
+	Zombie stack_zombie;
+	stack_zombie.announce();
 
 	makeHeapZombie();
 
