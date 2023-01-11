@@ -1,5 +1,16 @@
 #include "Harl.hpp"
 
+Harl::Harl() {
+	_level[0] = "DEBUG";
+	_level[1] = "INFO";
+	_level[2] = "WARNING";
+	_level[3] = "ERROR";
+	_ptrFunc[0] = &Harl::debug;
+	_ptrFunc[1] = &Harl::info;
+	_ptrFunc[2] = &Harl::warning;
+	_ptrFunc[3] = &Harl::error;
+}
+
 void Harl::debug(void) {
 	std::cout << "[ DEBUG ]" << std::endl
 	<< "I love having extra bacon for my 7XL-double-cheese-triple-pickle-special ketchup burger." << std::endl
@@ -25,28 +36,21 @@ void Harl::error(void) {
 }
 
 void Harl::complain(std::string level) {
-	void (Harl::*f[4])(void) = { &Harl::debug, &Harl::info, &Harl::warning, &Harl::error };
-	std::string levels[4] = { "DEBUG", "INFO", "WARNING", "ERROR" };
 	int flag = -1;
 
-	for (int i = 0; i < 4; i++) {
-		if (level == levels[i]) {
-			flag = i;
-			break;
-		}
-	}
+	for (int i = 0; i < 4; i++) if (level == _level[i]) flag = i;
 	switch (flag) {
 		case 0:
-			(this->*f[0])();
+			(this->*_ptrFunc[0])();
 			break;
 		case 1:
-			(this->*f[1])();
+			(this->*_ptrFunc[1])();
 			break;
 		case 2:
-			(this->*f[2])();
+			(this->*_ptrFunc[2])();
 			break;
 		case 3:
-			(this->*f[3])();
+			(this->*_ptrFunc[3])();
 			break;
 		default:
 			std::cout << "[ INVALID LEVEL ]" << std::endl;
