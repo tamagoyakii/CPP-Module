@@ -1,9 +1,10 @@
-NAME = weapon
+NAME = sed
 CC = c++
 CXXFLAGS = -Wall -Werror -Wextra -std=c++98
 RM = rm -f
 
-SRCS = ./main.cpp ./Weapon.cpp ./HumanA.cpp ./HumanB.cpp
+SRCS = ./main.cpp
+DSTS = *.replace
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)
@@ -16,6 +17,7 @@ clean:
 
 fclean: clean
 	$(RM) $(NAME)
+	$(RM) $(DSTS)
 
 re:
 	make fclean

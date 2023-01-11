@@ -1,6 +1,6 @@
 NAME = brain
 CC = c++
-CFLAGS = -Wall -Werror -Wextra -std=c++98
+CXXFLAGS = -Wall -Werror -Wextra -std=c++98
 RM = rm -f
 
 SRCS = ./main.cpp
@@ -8,11 +8,8 @@ OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)
 
-%.o: %.cpp
-	$(CC) $(CFLAGS) -c -o $@ $<
-
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) -o $@ $^
+	$(CC) $(CXXFLAGS) -o $@ $^
 
 clean:
 	$(RM) $(OBJS)
