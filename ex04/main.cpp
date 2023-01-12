@@ -32,7 +32,6 @@ int main(int ac, char** av) {
 	while (std::getline(fin, buf, '\0') && !std::cin.eof()) {
 		if (s1.compare(s2)) {
 			for (size_t pos = buf.find(s1, 0); pos != std::string::npos; pos = buf.find(s1, pos + s2.size())) {
-				std::cout << pos << std::endl;
 				buf.erase(pos, s1.length());
 				buf.insert(pos, s2);
 			}
