@@ -42,13 +42,10 @@ void Harl::complain(std::string level) {
 	switch (flag) {
 		case 0:
 			(this->*_ptrFunc[0])();
-			break;
 		case 1:
 			(this->*_ptrFunc[1])();
-			break;
 		case 2:
 			(this->*_ptrFunc[2])();
-			break;
 		case 3:
 			(this->*_ptrFunc[3])();
 			break;
