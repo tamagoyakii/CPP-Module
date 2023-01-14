@@ -35,10 +35,10 @@ class Fixed {
 		Fixed	operator++(int);
 		Fixed	operator--(int);
 		// four public overloaded member functions
-		static Fixed& min(Fixed& lhs, Fixed& rhs);
-		static Fixed& max(Fixed& lhs, Fixed& rhs);
-		static const Fixed& min(const Fixed& lhs, const Fixed& rhs);
-		static const Fixed& max(const Fixed& lhs, const Fixed& rhs);
+		static Fixed& min(Fixed& a, Fixed& b);
+		static Fixed& max(Fixed& a, Fixed& b);
+		static const Fixed& min(const Fixed& a, const Fixed& b);
+		static const Fixed& max(const Fixed& a, const Fixed& b);
 };
 
 std::ostream& operator<<(std::ostream& out, const Fixed &ref);
