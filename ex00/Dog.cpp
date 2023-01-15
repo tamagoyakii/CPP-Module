@@ -1,0 +1,24 @@
+#include "Dog.hpp"
+
+Dog::Dog(void): Animal() {
+	this->_type = "Dog";
+	std::cout << "Dog created" << std::endl;
+}
+
+Dog::Dog(const Dog& ref): Animal() {
+	this->_type = ref.getType();
+	std::cout << "Dog copied" << std::endl;
+}
+
+Dog& Dog::operator=(const Dog& ref) {
+	this->_type = ref.getType();
+	return *this;
+}
+
+Dog::~Dog(void) {
+	std::cout << "Dog destroyed" << std::endl;
+}
+
+void Dog::makeSound(void) const {
+	std::cout << "Dog is making a sound... WOOF WOOF!" << std::endl;
+}
