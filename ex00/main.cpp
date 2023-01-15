@@ -1,26 +1,23 @@
 #include "ClapTrap.hpp"
 
 int main() {
-	ClapTrap a("jihyukim");
-	ClapTrap b("him");
-	ClapTrap c("her");
+	ClapTrap a("A");
+	ClapTrap b("B");
+	ClapTrap c("C");
 
-	a.attack(b.getName());
-	b.takeDamage(a.getAttackDamage());
+	a.attack("B");
 
-	for (int i = 0; i < 10; i ++) {
-		b.attack(c.getName());
-		c.takeDamage(b.getAttackDamage());
-	}
+	for (int i = 0; i < 10; i ++) b.attack("C");
 
-	b.attack(c.getName());
+	b.attack("C");
 
-	for (int i = 0; i < 5; i++) {
-		c.takeDamage(2);
-	}
+	c.takeDamage(2);
+	c.beRepaired(2);
+
+	for (int i = 0; i < 5; i++) c.takeDamage(2);
 
 	c.beRepaired(10);
-	c.attack(a.getName());
+	c.attack("A");
 	
 	return 0;
 }
