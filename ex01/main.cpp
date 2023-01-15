@@ -1,26 +1,18 @@
-#include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
 
 int main() {
-	ClapTrap a("jihyukim");
-	ClapTrap b("him");
-	ClapTrap c("her");
+	ScavTrap a("A");
+	ScavTrap b("B");
 
-	a.attack(b.getName());
-	b.takeDamage(a.getAttackDamage());
+	a.attack("B");
+	b.attack("A");
 
-	for (int i = 0; i < 10; i ++) {
-		b.attack(c.getName());
-		c.takeDamage(b.getAttackDamage());
-	}
+	b.takeDamage(20);
+	a.takeDamage(20);
+	b.beRepaired(10);
 
-	b.attack(c.getName());
+	a.guardGate();
+	b.guardGate();
 
-	for (int i = 0; i < 5; i++) {
-		c.takeDamage(2);
-	}
-
-	c.beRepaired(10);
-	c.attack(a.getName());
-	
 	return 0;
 }

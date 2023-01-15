@@ -9,7 +9,7 @@ ClapTrap::ClapTrap(ClapTrap const &ref) : _name(ref._name), _hitPoints(ref._hitP
 }
 
 ClapTrap::~ClapTrap() {
-	std::cout << "ClapTrap " << this->_name << " is dead." << std::endl;
+	std::cout << "ClapTrap " << this->_name << " destroyed." << std::endl;
 }
 
 ClapTrap &ClapTrap::operator=(ClapTrap const &ref)
