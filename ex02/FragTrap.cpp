@@ -16,7 +16,7 @@ FragTrap& FragTrap::operator=(const FragTrap& ref) {
 	return (*this);
 }
 
-FragTrap::~FragTrap() {
+FragTrap::~FragTrap(void) {
 	std::cout << "FragTrap " << this->_name << " destroyed." << std::endl;
 }
 

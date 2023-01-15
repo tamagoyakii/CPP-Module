@@ -8,10 +8,6 @@ ClapTrap::ClapTrap(const ClapTrap& ref) : _name(ref._name), _hitPoints(ref._hitP
 	std::cout << "ClapTrap " << this->_name << " created." << std::endl;
 }
 
-ClapTrap::~ClapTrap() {
-	std::cout << "ClapTrap " << this->_name << " destroyed." << std::endl;
-}
-
 ClapTrap& ClapTrap::operator=(const ClapTrap& ref)
 {
 	this->_name = ref._name;
@@ -19,6 +15,10 @@ ClapTrap& ClapTrap::operator=(const ClapTrap& ref)
 	this->_energyPoints = ref._energyPoints;
 	this->_attackDamage = ref._attackDamage;
 	return (*this);
+}
+
+ClapTrap::~ClapTrap(void) {
+	std::cout << "ClapTrap " << this->_name << " destroyed." << std::endl;
 }
 
 void ClapTrap::attack(const std::string& target) {

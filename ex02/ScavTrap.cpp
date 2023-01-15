@@ -16,7 +16,7 @@ ScavTrap& ScavTrap::operator=(const ScavTrap& ref) {
 	return (*this);
 }
 
-ScavTrap::~ScavTrap() {
+ScavTrap::~ScavTrap(void) {
 	std::cout << "ScavTrap " << this->_name << " destroyed." << std::endl;
 }
 
