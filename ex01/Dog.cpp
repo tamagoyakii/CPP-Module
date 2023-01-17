@@ -1,0 +1,28 @@
+#include "Dog.hpp"
+
+Dog::Dog(void): Animal("Dog"), _brain(new Brain("Dog")) {
+	std::cout << "Dog created" << std::endl;
+}
+
+Dog::Dog(const Dog& ref): Animal(ref.getType()), _brain(new Brain(*ref._brain)) {
+	std::cout << "Dog copied" << std::endl;
+}
+
+Dog& Dog::operator=(const Dog& ref) {
+	this->_type = ref.getType();
+	this->_brain = ref._brain;
+	return *this;
+}
+
+Dog::~Dog(void) {
+	delete this->_brain;
+	std::cout << "Dog destroyed" << std::endl;
+}
+
+void Dog::makeSound(void) const {
+	std::cout << "Dog is making a sound... WOOF WOOF!" << std::endl;
+}
+
+void Dog::showIdea(int i) const {
+	std::cout << "Dog has "<< this->_brain->getIdea(i) << " in its brain " << i << std::endl;
+}
