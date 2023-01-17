@@ -25,6 +25,9 @@ void zoo(void) {
 
 	c1.showIdea(5);
 	c2.showIdea(5);
+
+	Dog d1;
+	Dog d2 = d1;
 }
 
 int main(void) {
