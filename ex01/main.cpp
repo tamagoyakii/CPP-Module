@@ -3,21 +3,17 @@
 #include "WrongCat.hpp"
 
 void zoo(void) {
-	// Animal* animals[10];
+	Animal* animals[10];
 
-	// std::cout << "----------Create 10 Animals(5 Cats, 5 Dogs)----------" << std::endl;
-	// for (int i = 0; i < 5; i++) animals[i] = new Dog();
-	// for (int i = 5; i < 10; i++) animals[i] = new Cat();
+	// 생성
+	for (int i = 0; i < 5; i++) animals[i] = new Dog();
+	for (int i = 5; i < 10; i++) animals[i] = new Cat();
 
-	// animals[4]->makeSound();
-	// animals[5]->makeSound();
-
-	// animals[4] = animals[5];
-	// animals[4]->makeSound();
-	// animals[5]->makeSound();
-
-	// std::cout << std::endl << "----------Delete Animals----------" << std::endl;
-	// for (int i = 0; i < 10; i++) delete animals[i];
+	// 소리내기
+	for (int i = 0; i < 10; i++) animals[i]->makeSound();
+	
+	// 소멸
+	for (int i = 0; i < 10; i++) delete animals[i];
 
 	Cat c1;
 	Cat c2("Dog");

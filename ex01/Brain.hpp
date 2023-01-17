@@ -11,7 +11,6 @@ class Brain {
 		Brain(const Brain& ref);
 		Brain& operator=(const Brain& ref);
 		~Brain(void);
-		void setIdea(const int i, const std::string idea) ;
 		std::string getIdea(int i) const;
 };
 

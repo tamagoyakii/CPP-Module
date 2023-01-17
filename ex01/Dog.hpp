@@ -9,6 +9,7 @@ class Dog : public Animal {
 		Brain* _brain;
 	public:
 		Dog(void);
+		Dog(std::string idea);
 		Dog(const Dog& ref);
 		Dog& operator=(const Dog& ref);
 		~Dog(void);

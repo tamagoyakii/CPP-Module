@@ -4,13 +4,18 @@ Dog::Dog(void): Animal("Dog"), _brain(new Brain("Dog")) {
 	std::cout << "Dog created" << std::endl;
 }
 
+Dog::Dog(std::string idea): Animal("Dog"), _brain(new Brain(idea)) {
+	std::cout << "Dog created" << std::endl;
+}
+
 Dog::Dog(const Dog& ref): Animal(ref.getType()), _brain(new Brain(*ref._brain)) {
-	std::cout << "Dog copied" << std::endl;
+	std::cout << "Dog copy created" << std::endl;
 }
 
 Dog& Dog::operator=(const Dog& ref) {
 	this->_type = ref.getType();
-	this->_brain = ref._brain;
+	*this->_brain = *ref._brain;
+	std::cout << "Dog copied" << std::endl;
 	return *this;
 }
 

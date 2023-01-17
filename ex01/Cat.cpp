@@ -9,12 +9,13 @@ Cat::Cat(std::string idea): Animal("Cat"), _brain(new Brain(idea)) {
 }
 
 Cat::Cat(const Cat& ref): Animal(ref.getType()), _brain(new Brain(*ref._brain)) {
-	std::cout << "Cat copied" << std::endl;
+	std::cout << "Cat copy created" << std::endl;
 }
 
 Cat& Cat::operator=(const Cat& ref) {
 	this->_type = ref.getType();
-	this->_brain = ref._brain;
+	*this->_brain = *ref._brain;
+	std::cout << "Cat copied" << std::endl;
 	return *this;
 }
 
