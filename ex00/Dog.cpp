@@ -5,11 +5,12 @@ Dog::Dog(void): Animal("Dog") {
 }
 
 Dog::Dog(const Dog& ref): Animal(ref.getType()) {
-	std::cout << "Dog copied" << std::endl;
+	std::cout << "Dog copy created" << std::endl;
 }
 
 Dog& Dog::operator=(const Dog& ref) {
 	this->_type = ref.getType();
+	std::cout << "Dog copied" << std::endl;
 	return *this;
 }
 

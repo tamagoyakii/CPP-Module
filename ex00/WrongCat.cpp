@@ -5,11 +5,12 @@ WrongCat::WrongCat(void): WrongAnimal("WrongCat") {
 }
 
 WrongCat::WrongCat(const WrongCat& ref): WrongAnimal(ref.getType()) {
-	std::cout << "WrongCat copied" << std::endl;
+	std::cout << "WrongCat copy created" << std::endl;
 }
 
 WrongCat& WrongCat::operator=(const WrongCat& ref) {
 	this->_type = ref.getType();
+	std::cout << "WrongCat copied" << std::endl;
 	return *this;
 }
 

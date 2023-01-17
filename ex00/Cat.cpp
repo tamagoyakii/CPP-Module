@@ -5,11 +5,12 @@ Cat::Cat(void): Animal("Cat") {
 }
 
 Cat::Cat(const Cat& ref): Animal(ref.getType()) {
-	std::cout << "Cat copied" << std::endl;
+	std::cout << "Cat copy created" << std::endl;
 }
 
 Cat& Cat::operator=(const Cat& ref) {
 	this->_type = ref.getType();
+	std::cout << "Cat copied" << std::endl;
 	return *this;
 }
 

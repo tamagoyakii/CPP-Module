@@ -9,11 +9,12 @@ Animal::Animal(std::string type): _type(type) {
 }
 
 Animal::Animal(const Animal& ref): _type(ref.getType()) {
-	std::cout << "Animal " << this->_type << " copied" << std::endl;
+	std::cout << "Animal " << this->_type << " copy created" << std::endl;
 }
 
 Animal& Animal::operator=(const Animal& ref) {
 	this->_type = ref.getType();
+	std::cout << "Animal " << this->_type << " copied" << std::endl;
 	return *this;
 }
 
