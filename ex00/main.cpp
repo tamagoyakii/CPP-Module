@@ -18,13 +18,6 @@ void zoo(void) {
 	delete i;
 	delete j;
 
-	const WrongCat* alpha = new WrongCat();
-	const WrongAnimal* a = alpha;
-	alpha->makeSound();
-	a->makeSound();
-
-	delete alpha;
-
 	const WrongAnimal* beta = new WrongAnimal();
 	const WrongAnimal* b1 = new WrongCat();
 	const WrongCat* b2 = new WrongCat();
