@@ -7,24 +7,34 @@ void zoo(void) {
 	const Animal* j = new Dog();
 	const Animal* i = new Cat();
 
-	std::cout << j->getType() << " " << std::endl;
 	std::cout << i->getType() << " " << std::endl;
+	std::cout << j->getType() << " " << std::endl;
 
 	i->makeSound(); //will output the cat sound!
 	j->makeSound();
 	meta->makeSound();
 
 	delete meta;
-	delete j;
 	delete i;
+	delete j;
 
-	WrongAnimal* wrong = new WrongAnimal();
-	WrongAnimal* wrongCat = new WrongCat();
-	wrong->makeSound();
-	wrongCat->makeSound();
+	const WrongCat* alpha = new WrongCat();
+	const WrongAnimal* a = alpha;
+	alpha->makeSound();
+	a->makeSound();
 
-	delete wrong;
-	delete wrongCat;
+	delete alpha;
+
+	const WrongAnimal* beta = new WrongAnimal();
+	const WrongAnimal* b1 = new WrongCat();
+	const WrongCat* b2 = new WrongCat();
+	beta->makeSound();
+	b1->makeSound();
+	b2->makeSound();
+
+	delete beta;
+	delete b1;
+	delete b2;
 }
 
 int main(void) {

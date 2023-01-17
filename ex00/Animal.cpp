@@ -1,6 +1,10 @@
 #include "Animal.hpp"
 
-Animal::Animal(void): _type("Human") {
+Animal::Animal(void): _type("Lion") {
+	std::cout << "Animal " << this->_type << " created" << std::endl;
+}
+
+Animal::Animal(std::string type): _type(type) {
 	std::cout << "Animal " << this->_type << " created" << std::endl;
 }
 

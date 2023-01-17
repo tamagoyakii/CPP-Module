@@ -1,12 +1,10 @@
 #include "Cat.hpp"
 
-Cat::Cat(void): Animal() {
-	this->_type = "Cat";
+Cat::Cat(void): Animal("Cat") {
 	std::cout << "Cat created" << std::endl;
 }
 
-Cat::Cat(const Cat& ref): Animal() {
-	this->_type = ref.getType();
+Cat::Cat(const Cat& ref): Animal(ref.getType()) {
 	std::cout << "Cat copied" << std::endl;
 }
 

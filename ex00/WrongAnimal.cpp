@@ -1,6 +1,10 @@
 #include "WrongAnimal.hpp"
 
-WrongAnimal::WrongAnimal(void): _type("Human") {
+WrongAnimal::WrongAnimal(void): _type("WrongLion") {
+	std::cout << "WrongAnimal " << this->_type << " created" << std::endl;
+}
+
+WrongAnimal::WrongAnimal(std::string type): _type(type) {
 	std::cout << "WrongAnimal " << this->_type << " created" << std::endl;
 }
 

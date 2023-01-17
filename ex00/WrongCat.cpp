@@ -1,13 +1,11 @@
 #include "WrongCat.hpp"
 
-WrongCat::WrongCat(void): WrongAnimal() {
-	this->_type = "WrongCat";
+WrongCat::WrongCat(void): WrongAnimal("WrongCat") {
 	std::cout << "WrongCat created" << std::endl;
 }
 
-WrongCat::WrongCat(const WrongCat& ref): WrongAnimal() {
-	this->_type = ref.getType();
-	std::cout << "WrongCat cpoied" << std::endl;
+WrongCat::WrongCat(const WrongCat& ref): WrongAnimal(ref.getType()) {
+	std::cout << "WrongCat copied" << std::endl;
 }
 
 WrongCat& WrongCat::operator=(const WrongCat& ref) {

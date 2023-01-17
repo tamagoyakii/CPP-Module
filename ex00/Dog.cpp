@@ -1,12 +1,10 @@
 #include "Dog.hpp"
 
-Dog::Dog(void): Animal() {
-	this->_type = "Dog";
+Dog::Dog(void): Animal("Dog") {
 	std::cout << "Dog created" << std::endl;
 }
 
-Dog::Dog(const Dog& ref): Animal() {
-	this->_type = ref.getType();
+Dog::Dog(const Dog& ref): Animal(ref.getType()) {
 	std::cout << "Dog copied" << std::endl;
 }
 
