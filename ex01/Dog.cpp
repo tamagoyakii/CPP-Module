@@ -29,5 +29,17 @@ void Dog::makeSound(void) const {
 }
 
 void Dog::showIdea(int i) const {
+	if (i < 0 || i >= 100) {
+		std::cout << "out of brain!" << std::endl;
+		return;
+	}
 	std::cout << "Dog has "<< this->_brain->getIdea(i) << " in its brain " << i << std::endl;
+}
+
+void Dog::setBrain(const Brain& ref) const {
+	*this->_brain = ref;
+}
+
+Brain* Dog::getBrain(void) const {
+	return this->_brain;
 }
