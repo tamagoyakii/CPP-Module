@@ -29,5 +29,17 @@ void Cat::makeSound(void) const {
 }
 
 void Cat::showIdea(int i) const {
+	if (i < 0 || i >= 100) {
+		std::cout << "out of brain!" << std::endl;
+		return;
+	}
 	std::cout << "Cat has "<< this->_brain->getIdea(i) << " in its brain " << i << std::endl;
+}
+
+void Cat::setBrain(const Brain& ref) const {
+	*this->_brain = ref;
+}
+
+Brain* Cat::getBrain(void) const {
+	return this->_brain;
 }

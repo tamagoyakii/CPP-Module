@@ -16,6 +16,8 @@ class Cat : public Animal {
 
 		void makeSound(void) const;
 		void showIdea(int i) const;
+		void setBrain(const Brain& ref) const;
+		Brain* getBrain(void) const;
 };
 
 #endif
