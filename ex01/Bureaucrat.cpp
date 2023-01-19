@@ -4,7 +4,7 @@ Bureaucrat::Bureaucrat(void): _name("jihyukim"), _grade(150) {
 	std::cout << "Bureaucrat " << this->_name << " created" << std::endl;
 }
 
-Bureaucrat::Bureaucrat(std::string name, int grade): _name(name), _grade(grade) {
+Bureaucrat::Bureaucrat(const std::string name, const int grade): _name(name), _grade(grade) {
 	if (this->_grade < 1) throw Bureaucrat::GradeTooHighException();
 	if (this->_grade > 150) throw Bureaucrat::GradeTooLowException();
 	std::cout << "Bureaucrat " << this->_name << " created" << std::endl;
@@ -47,14 +47,14 @@ void Bureaucrat::decreaseGrade(void) {
 }
 
 void Bureaucrat::signForm(Form &ref) {
-	std::cout << "Bureaucrat " << this->_name << " came to sign " << ref.getName() << "..." << std::endl;
+	std::cout << "Bureaucrat [ " << this->_name << " ] is trying to sign [ " << ref.getName() << " ]..." << std::endl;
 	try {
 		ref.beSigned(*this);
 	} catch (const std::exception& e) {
-		std::cout << "...FAIL! " << this->_name <<  " couldn’t sign " << ref.getName() << " because of its " << e.what() << std::endl;
+		std::cout << "Bureaucrat [ " << this->_name << " ] couldn’t sign [ " << ref.getName() << " ] because of its " << e.what() << std::endl;
 		return;
 	}
-	std::cout << "...SUCCESS!" << std::endl;
+		std::cout << "Bureaucrat [ "<< this->_name << " ] signed [ " << ref.getName() << " ]" << std::endl;
 }
 
 const char* Bureaucrat::GradeTooHighException::what() const throw() {

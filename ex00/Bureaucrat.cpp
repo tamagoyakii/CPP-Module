@@ -4,7 +4,7 @@ Bureaucrat::Bureaucrat(void): _name("jihyukim"), _grade(150) {
 	std::cout << "Bureaucrat " << this->_name << " created" << std::endl;
 }
 
-Bureaucrat::Bureaucrat(std::string name, int grade): _name(name), _grade(grade) {
+Bureaucrat::Bureaucrat(const std::string name, const int grade): _name(name), _grade(grade) {
 	if (this->_grade < 1) throw GradeTooHighException();
 	if (this->_grade > 150) throw GradeTooLowException();
 	std::cout << "Bureaucrat " << this->_name << " created" << std::endl;

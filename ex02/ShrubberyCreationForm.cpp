@@ -6,7 +6,7 @@ ShrubberyCreationForm::ShrubberyCreationForm(void)
 		std::cout << "ShrubberyCreationForm created" << std::endl;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string target)
+ShrubberyCreationForm::ShrubberyCreationForm(const std::string target)
 	: AForm("ShrubberyCreationForm", 145, 137), _target(target) {
 		std::cout << "ShrubberyCreationForm created" << std::endl;
 }
@@ -45,7 +45,7 @@ void ShrubberyCreationForm::execute(const Bureaucrat& executor) const {
 	ofs << "   \\|//\\|/\\|/,\\\\|/|/|// \\|/ \\|//\\|/\\|/,\\\\|/|/|// \\|/  " << std::endl;
 	ofs << "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^" << std::endl;
 
-	std::cout << "Bureaucrat [ " << executor.getName() << " ] executed form [ " << this->getName() << " ]" << std::endl;
+	std::cout << "Target [ " << this->getName() << " ] has been created successfully" << std::endl;
 }
 
 std::string ShrubberyCreationForm::getTarget(void) const {

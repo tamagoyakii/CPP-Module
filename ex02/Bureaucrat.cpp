@@ -47,21 +47,32 @@ void Bureaucrat::decreaseGrade(void) {
 }
 
 void Bureaucrat::signForm(AForm &ref) {
-	std::cout << "Bureaucrat " << this->_name << " came to sign " << ref.getName() << "..." << std::endl;
+	std::cout << "Bureaucrat [ " << this->_name << " ] is trying to sign [ " << ref.getName() << " ]..." << std::endl;
 	try {
 		ref.beSigned(*this);
 	} catch (const std::exception& e) {
-		std::cout << "...FAIL! " << this->_name <<  " couldn’t sign " << ref.getName() << " because of its " << e.what() << std::endl;
+		std::cout << "Bureaucrat [ " << this->_name << " ] couldn’t sign [ " << ref.getName() << " ] because of its " << e.what() << std::endl;
 		return;
 	}
-	std::cout << "...SUCCESS!" << std::endl;
+		std::cout << "Bureaucrat [ "<< this->_name << " ] signed [ " << ref.getName() << " ]" << std::endl;
 }
 
-const char *Bureaucrat::GradeTooHighException::what() const throw() {
+void Bureaucrat::executeForm(const AForm& ref) {
+	std::cout << "Bureaucrat [ " << this->_name << " ] is trying to execute [ " << ref.getName() << " ]..." << std::endl;
+	try {
+		ref.execute(*this);
+	} catch (const std::exception& e) {
+		std::cout << "Bureaucrat [ " << this->_name <<  " ] couldn’t execute [ " << ref.getName() << " ] because of its " << e.what() << std::endl;
+		return;
+	}
+	std::cout << "Bureaucrat [ "<< this->_name << " ] executed [ " << ref.getName() << " ]" << std::endl;
+}
+
+const char* Bureaucrat::GradeTooHighException::what() const throw() {
 	return "...Grade too high!";
 }
 
-const char *Bureaucrat::GradeTooLowException::what() const throw() {
+const char* Bureaucrat::GradeTooLowException::what() const throw() {
 	return "...Grade too low!";
 }
 

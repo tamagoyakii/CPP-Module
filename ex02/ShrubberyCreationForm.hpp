@@ -9,7 +9,7 @@ class ShrubberyCreationForm : public AForm {
 		std::string _target;
 	public:
 		ShrubberyCreationForm(void);
-		ShrubberyCreationForm(std::string target);
+		ShrubberyCreationForm(const std::string target);
 		ShrubberyCreationForm(const ShrubberyCreationForm& ref);
 		ShrubberyCreationForm& operator=(const ShrubberyCreationForm& ref);
 		~ShrubberyCreationForm(void);

@@ -5,7 +5,7 @@ AForm::AForm(void)
 	std::cout << "AForm " << this->_name << " created" << std::endl;
 }
 
-AForm::AForm(std::string name, int gradeToSign, int gradeToExec)
+AForm::AForm(const std::string name, const int gradeToSign, const int gradeToExec)
 	: _name(name), _isSigned(false), _gradeToSign(gradeToSign), _gradeToExec(gradeToExec) {
 	if (this->_gradeToSign < 1 || this->_gradeToExec < 1) throw AForm::GradeTooHighException();
 	if (this->_gradeToSign > 150 || this->_gradeToExec > 150) throw AForm::GradeTooLowException();
@@ -47,7 +47,6 @@ void AForm::beSigned(const Bureaucrat& ref) {
 	if (ref.getGrade() > this->_gradeToSign) throw AForm::GradeTooLowException();
 	if (this->_isSigned) throw AForm::FormAlreadySignedException();
 	this->_isSigned = true;
-	std::cout << "Bureaucrat [ " << ref.getName() << " ] signed form [ " << this->_name << " ]" << std::endl;
 }
 
 const char* AForm::GradeTooHighException::what() const throw() {

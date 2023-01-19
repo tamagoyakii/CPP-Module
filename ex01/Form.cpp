@@ -5,7 +5,7 @@ Form::Form(void)
 	std::cout << "Form " << this->_name << " created" << std::endl;
 }
 
-Form::Form(std::string name, int gradeToSign, int gradeToExec)
+Form::Form(const std::string name, const int gradeToSign, const int gradeToExec)
 	: _name(name), _isSigned(false), _gradeToSign(gradeToSign), _gradeToExec(gradeToExec) {
 	if (this->_gradeToSign < 1 || this->_gradeToExec < 1) throw Form::GradeTooHighException();
 	if (this->_gradeToSign > 150 || this->_gradeToExec > 150) throw Form::GradeTooLowException();
