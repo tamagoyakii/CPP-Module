@@ -50,21 +50,21 @@ void AForm::beSigned(const Bureaucrat& ref) {
 }
 
 const char* AForm::GradeTooHighException::what() const throw() {
-	return "Exception: Your grade is too high!";
+	return "exception: Your grade is too high!";
 }
 
 const char* AForm::GradeTooLowException::what() const throw() {
-	return "Exception: Your grade is too low!";
+	return "exception: Your grade is too low!";
 }
 
 const char* AForm::FormNotSignedException::what() const throw()
 {
-	return "Exception: This form is not signed!";
+	return "exception: This form is not signed!";
 }
 
 const char* AForm::FormAlreadySignedException::what() const throw()
 {
-	return "Exception: This form is already signed";
+	return "exception: This form is already signed";
 }
 
 std::ostream& operator<<(std::ostream &out, const AForm& ref) {

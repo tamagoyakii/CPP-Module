@@ -45,7 +45,7 @@ void ShrubberyCreationForm::execute(const Bureaucrat& executor) const {
 	ofs << "   \\|//\\|/\\|/,\\\\|/|/|// \\|/ \\|//\\|/\\|/,\\\\|/|/|// \\|/  " << std::endl;
 	ofs << "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^" << std::endl;
 
-	std::cout << "Target [ " << this->getName() << " ] has been created successfully" << std::endl;
+	std::cout << "Target [ " << this->_target << " ] has been created successfully" << std::endl;
 }
 
 std::string ShrubberyCreationForm::getTarget(void) const {
