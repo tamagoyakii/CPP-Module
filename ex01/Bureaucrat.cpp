@@ -1,13 +1,12 @@
 #include "Bureaucrat.hpp"
 
-
 Bureaucrat::Bureaucrat(void): _name("jihyukim"), _grade(150) {
 	std::cout << "Bureaucrat " << this->_name << " created" << std::endl;
 }
 
 Bureaucrat::Bureaucrat(std::string name, int grade): _name(name), _grade(grade) {
-	if (this->_grade < 1) throw GradeTooHighException();
-	if (this->_grade > 150) throw GradeTooLowException();
+	if (this->_grade < 1) throw Bureaucrat::GradeTooHighException();
+	if (this->_grade > 150) throw Bureaucrat::GradeTooLowException();
 	std::cout << "Bureaucrat " << this->_name << " created" << std::endl;
 }
 
@@ -35,14 +34,14 @@ int Bureaucrat::getGrade(void) const {
 
 void Bureaucrat::increaseGrade(void) {
 	std::cout << "Upgrading " << this->_name << "..." << std::endl;
-	if (this->_grade <= 1) throw GradeTooHighException();
+	if (this->_grade <= 1) throw Bureaucrat::GradeTooHighException();
 	--this->_grade;
 	std::cout << "...SUCCESS!" << std::endl;
 }
 
 void Bureaucrat::decreaseGrade(void) {
 	std::cout << "Downgrading " << this->_name << "..." << std::endl;
-	if (this->_grade >= 150) throw GradeTooLowException();
+	if (this->_grade >= 150) throw Bureaucrat::GradeTooLowException();
 	++this->_grade;
 	std::cout << "...SUCCESS!" << std::endl;
 }
@@ -58,11 +57,11 @@ void Bureaucrat::signForm(Form &ref) {
 	std::cout << "...SUCCESS!" << std::endl;
 }
 
-const char *Bureaucrat::GradeTooHighException::what() const throw() {
+const char* Bureaucrat::GradeTooHighException::what() const throw() {
 	return "...Grade too high!";
 }
 
-const char *Bureaucrat::GradeTooLowException::what() const throw() {
+const char* Bureaucrat::GradeTooLowException::what() const throw() {
 	return "...Grade too low!";
 }
 

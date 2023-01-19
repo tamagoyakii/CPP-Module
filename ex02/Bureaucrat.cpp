@@ -46,11 +46,22 @@ void Bureaucrat::decreaseGrade(void) {
 	std::cout << "...SUCCESS!" << std::endl;
 }
 
-const char* Bureaucrat::GradeTooHighException::what() const throw() {
+void Bureaucrat::signForm(AForm &ref) {
+	std::cout << "Bureaucrat " << this->_name << " came to sign " << ref.getName() << "..." << std::endl;
+	try {
+		ref.beSigned(*this);
+	} catch (const std::exception& e) {
+		std::cout << "...FAIL! " << this->_name <<  " couldn’t sign " << ref.getName() << " because of its " << e.what() << std::endl;
+		return;
+	}
+	std::cout << "...SUCCESS!" << std::endl;
+}
+
+const char *Bureaucrat::GradeTooHighException::what() const throw() {
 	return "...Grade too high!";
 }
 
-const char* Bureaucrat::GradeTooLowException::what() const throw() {
+const char *Bureaucrat::GradeTooLowException::what() const throw() {
 	return "...Grade too low!";
 }
 
