@@ -17,7 +17,7 @@ Bureaucrat::Bureaucrat(const Bureaucrat& ref): _name(ref.getName()), _grade(ref.
 
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& ref) {
 	this->_grade = ref.getGrade();
-	std::cout << "Bureaucrat " << this->_name << " copied" << std::endl;
+	std::cout << "Bureaucrat " << this->_name << " copied bureaucrat " << ref.getName() << std::endl;
 	return *this;
 };
 
@@ -55,6 +55,6 @@ const char *Bureaucrat::GradeTooLowException::what() const throw() {
 	return "...Grade too low!";
 }
 
-std::ostream& operator <<(std::ostream &out, const Bureaucrat& ref) {
-	return out << "[ Bureaucrat ] name: " + ref.getName() + " / grade: " << ref.getGrade();
+std::ostream& operator<<(std::ostream &out, const Bureaucrat& ref) {
+	return out << "[ Bureaucrat | " << ref.getName() <<  " ] grade: " << ref.getGrade();
 }
