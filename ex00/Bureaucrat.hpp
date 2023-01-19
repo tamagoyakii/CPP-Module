@@ -9,6 +9,7 @@ class Bureaucrat {
 		const std::string _name;
 		int _grade;
 	public:
+		Bureaucrat(void);
 		Bureaucrat(std::string name, int grade);
 		Bureaucrat(const Bureaucrat& ref);
 		Bureaucrat& operator=(const Bureaucrat& ref);
@@ -22,11 +23,11 @@ class Bureaucrat {
 
 		class GradeTooHighException : public std::exception {
 			public:
-				const char* what() const noexcept override;
+				const char* what() const throw();
 		};
 		class GradeTooLowException : public std::exception {
 			public:
-				const char* what() const noexcept override;
+				const char* what() const throw();
 		};
 };
 
