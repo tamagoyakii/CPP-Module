@@ -23,9 +23,9 @@ int main(void) {
 	}
 
 	std::cout << std::endl << "------------robotomy request test------------" << std::endl;
-	// Bureaucrat b2("B2", 1);
+	Bureaucrat b2("B2", 1);
 	// Bureaucrat b2("B2", 60);
-	Bureaucrat b2("B2", 80);
+	// Bureaucrat b2("B2", 80);
 	RobotomyRequestForm r1("RForm");
 
 	try {
@@ -41,9 +41,9 @@ int main(void) {
 	}
 
 	std::cout << std::endl << "-----------presidential pardon test----------" << std::endl;
-	// Bureaucrat b3("B3", 1);
+	Bureaucrat b3("B3", 1);
 	// Bureaucrat b3("B3", 10);
-	Bureaucrat b3("B3", 30);
+	// Bureaucrat b3("B3", 30);
 	PresidentialPardonForm p1("PForm");
 
 	try {

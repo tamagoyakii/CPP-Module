@@ -8,7 +8,7 @@ SRCS = ./main.cpp \
 			./AForm.cpp \
 			./ShrubberyCreationForm.cpp \
 			./RobotomyRequestForm.cpp \
-			./PresidentialPardonForm.cpp \
+			./PresidentialPardonForm.cpp
 OBJS = $(SRCS:.cpp=.o)
 OFS = *_shrubbery
 
