@@ -1,6 +1,5 @@
 #include "PresidentialPardonForm.hpp"
 
-
 PresidentialPardonForm::PresidentialPardonForm(void)
 	: AForm("PresidentialPardonForm", 25, 5), _target("Default") {
 		std::cout << "PresidentialPardonForm created" << std::endl;

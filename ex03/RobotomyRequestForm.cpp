@@ -1,6 +1,5 @@
 #include "RobotomyRequestForm.hpp"
 
-
 RobotomyRequestForm::RobotomyRequestForm(void)
 	: AForm("RobotomyRequestForm", 72, 45), _target("Default") {
 		std::cout << "RobotomyRequestForm created" << std::endl;
@@ -30,8 +29,8 @@ void RobotomyRequestForm::execute(const Bureaucrat& executor) const {
 	if (executor.getGrade() > this->getGradeToExec()) throw GradeTooLowException();
 
 	std::cout << "...Drilling noiz..." << std::endl;
-	int rand = std::rand();
-	if (rand % 2) std::cout << "Target [ " << this->_target << " ] has been robotomized successfully" << std::endl;
+	srand (time(NULL));
+	if (rand() % 2) std::cout << "Target [ " << this->_target << " ] has been robotomized successfully" << std::endl;
 	else std::cout << "robotomy failed!" << std::endl;
 }
 

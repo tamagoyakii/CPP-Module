@@ -1,6 +1,5 @@
 #include "ShrubberyCreationForm.hpp"
 
-
 ShrubberyCreationForm::ShrubberyCreationForm(void)
 	: AForm("ShrubberyCreationForm", 145, 137), _target("Default") {
 		std::cout << "ShrubberyCreationForm created" << std::endl;
