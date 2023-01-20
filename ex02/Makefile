@@ -3,7 +3,12 @@ CC = c++
 CXXFLAGS = -Wall -Werror -Wextra -std=c++98
 RM = rm -f
 
-SRCS = ./main.cpp ./Bureaucrat.cpp ./AForm.cpp ./ShrubberyCreationForm.cpp ./RobotomyRequestForm.cpp ./PresidentialPardonForm.cpp
+SRCS = ./main.cpp \
+			./Bureaucrat.cpp \
+			./AForm.cpp \
+			./ShrubberyCreationForm.cpp \
+			./RobotomyRequestForm.cpp \
+			./PresidentialPardonForm.cpp \
 OBJS = $(SRCS:.cpp=.o)
 OFS = *_shrubbery
 

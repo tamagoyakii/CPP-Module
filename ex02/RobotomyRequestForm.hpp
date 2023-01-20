@@ -7,6 +7,7 @@
 class RobotomyRequestForm : public AForm {
 	private:
 		std::string _target;
+		void execute(const Bureaucrat& executor) const;
 	public:
 		RobotomyRequestForm(void);
 		RobotomyRequestForm(const std::string target);
@@ -14,7 +15,6 @@ class RobotomyRequestForm : public AForm {
 		RobotomyRequestForm& operator=(const RobotomyRequestForm& ref);
 		~RobotomyRequestForm(void);
 		
-		void execute(const Bureaucrat& executor) const;
 		std::string getTarget(void) const;
 };
 

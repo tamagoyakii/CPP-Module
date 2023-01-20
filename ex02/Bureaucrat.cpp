@@ -54,7 +54,7 @@ void Bureaucrat::signForm(AForm &ref) {
 		std::cout << "Bureaucrat [ " << this->_name << " ] couldn’t sign [ " << ref.getName() << " ] because of its " << e.what() << std::endl;
 		return;
 	}
-		std::cout << "Bureaucrat [ "<< this->_name << " ] signed [ " << ref.getName() << " ]" << std::endl;
+	std::cout << "Bureaucrat [ "<< this->_name << " ] signed [ " << ref.getName() << " ]" << std::endl;
 }
 
 void Bureaucrat::executeForm(const AForm& ref) {
