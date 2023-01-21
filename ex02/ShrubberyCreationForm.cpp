@@ -2,17 +2,17 @@
 
 ShrubberyCreationForm::ShrubberyCreationForm(void)
 	: AForm("ShrubberyCreationForm", 145, 137), _target("Default") {
-		std::cout << "ShrubberyCreationForm created" << std::endl;
+		// std::cout << "ShrubberyCreationForm created" << std::endl;
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string target)
 	: AForm("ShrubberyCreationForm", 145, 137), _target(target) {
-		std::cout << "ShrubberyCreationForm created" << std::endl;
+		// std::cout << "ShrubberyCreationForm created" << std::endl;
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& ref)
 	: AForm(ref), _target(ref.getTarget()) {
-		std::cout << "ShrubberyCreationForm copy created" << std::endl;
+		// std::cout << "ShrubberyCreationForm copy created" << std::endl;
 }
 ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm& ref) {
 	AForm::operator=(ref);
@@ -21,7 +21,7 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationF
 }
 
 ShrubberyCreationForm::~ShrubberyCreationForm(void) {
-	std::cout << "ShrubberyCreationForm destroyed" << std::endl;
+	// std::cout << "ShrubberyCreationForm destroyed" << std::endl;
 }
 
 void ShrubberyCreationForm::execute(const Bureaucrat& executor) const {

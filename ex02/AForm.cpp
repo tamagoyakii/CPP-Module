@@ -2,29 +2,29 @@
 
 AForm::AForm(void)
 	: _name("Default"), _isSigned(false), _gradeToSign(150), _gradeToExec(150) {
-	std::cout << "AForm " << this->_name << " created" << std::endl;
+	// std::cout << "AForm " << this->_name << " created" << std::endl;
 }
 
 AForm::AForm(const std::string name, const int gradeToSign, const int gradeToExec)
 	: _name(name), _isSigned(false), _gradeToSign(gradeToSign), _gradeToExec(gradeToExec) {
 	if (this->_gradeToSign < 1 || this->_gradeToExec < 1) throw AForm::GradeTooHighException();
 	if (this->_gradeToSign > 150 || this->_gradeToExec > 150) throw AForm::GradeTooLowException();
-	std::cout << "AForm " << this->_name << " created" << std::endl;
+	// std::cout << "AForm " << this->_name << " created" << std::endl;
 }
 
 AForm::AForm(const AForm& ref)
 	: _name(ref.getName()), _isSigned(false), _gradeToSign(ref.getGradeToSign()), _gradeToExec(ref.getGradeToExec()) {
-	std::cout << "AForm " << this->_name << " copy created" << std::endl;
+	// std::cout << "AForm " << this->_name << " copy created" << std::endl;
 }
 
 AForm& AForm::operator=(const AForm& ref) {
 	this->_isSigned = ref.getIsSigned();
-	std::cout << "AForm " << this->_name << " copied form" << ref.getName() << std::endl;
+	// std::cout << "AForm " << this->_name << " copied form" << ref.getName() << std::endl;
 	return *this;
 }
 
 AForm::~AForm(void) {
-	std::cout << "AForm " << this->_name << " destroyed" << std::endl;
+	// std::cout << "AForm " << this->_name << " destroyed" << std::endl;
 }
 
 std::string AForm::getName(void) const {

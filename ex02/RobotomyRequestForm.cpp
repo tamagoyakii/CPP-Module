@@ -2,17 +2,17 @@
 
 RobotomyRequestForm::RobotomyRequestForm(void)
 	: AForm("RobotomyRequestForm", 72, 45), _target("Default") {
-		std::cout << "RobotomyRequestForm created" << std::endl;
+		// std::cout << "RobotomyRequestForm created" << std::endl;
 }
 
 RobotomyRequestForm::RobotomyRequestForm(const std::string target)
 	: AForm("RobotomyRequestForm", 72, 45), _target(target) {
-		std::cout << "RobotomyRequestForm created" << std::endl;
+		// std::cout << "RobotomyRequestForm created" << std::endl;
 }
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& ref)
 	: AForm(ref), _target(ref.getTarget()) {
-		std::cout << "RobotomyRequestForm copy created" << std::endl;
+		// std::cout << "RobotomyRequestForm copy created" << std::endl;
 }
 RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& ref) {
 	AForm::operator=(ref);
@@ -21,7 +21,7 @@ RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& r
 }
 
 RobotomyRequestForm::~RobotomyRequestForm(void) {
-	std::cout << "RobotomyRequestForm destroyed" << std::endl;
+	// std::cout << "RobotomyRequestForm destroyed" << std::endl;
 }
 
 void RobotomyRequestForm::execute(const Bureaucrat& executor) const {

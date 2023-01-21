@@ -4,7 +4,7 @@
 #include "PresidentialPardonForm.hpp"
 
 int main(void) {
-	std::cout << std::endl << "-----------shrubbery creation test-----------" << std::endl;
+	std::cout << std::endl << "-----------------------shrubbery----------------------" << std::endl;
 	Bureaucrat b1("B1", 1);
 	// Bureaucrat b1("B1", 140);
 	// Bureaucrat b1("B1", 146);
@@ -22,7 +22,7 @@ int main(void) {
 		std::cerr << e.what() << std::endl;
 	}
 
-	std::cout << std::endl << "------------robotomy request test------------" << std::endl;
+	std::cout << std::endl << "------------------------robotomy----------------------" << std::endl;
 	Bureaucrat b2("B2", 1);
 	// Bureaucrat b2("B2", 60);
 	// Bureaucrat b2("B2", 80);
@@ -40,7 +40,7 @@ int main(void) {
 		std::cerr << e.what() << std::endl;
 	}
 
-	std::cout << std::endl << "-----------presidential pardon test----------" << std::endl;
+	std::cout << std::endl << "----------------------presidential--------------------" << std::endl;
 	Bureaucrat b3("B3", 1);
 	// Bureaucrat b3("B3", 10);
 	// Bureaucrat b3("B3", 30);
@@ -58,6 +58,5 @@ int main(void) {
 		std::cerr << e.what() << std::endl;
 	}
 
-	std::cout << std::endl << "-----------------destruction-----------------" << std::endl;
 	return 0;
 }
