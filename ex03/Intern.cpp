@@ -22,6 +22,7 @@ AForm* Intern::makeForm(std::string name, std::string target) const {
 	try {
 		for (int i = 0; i < 3; i++) {
 			if (name == formNames[i]) {
+				std::cout << "Intern creates " << formNames[i] << " form" << std::endl;
 				switch (i) {
 					case 0:
 						return new ShrubberyCreationForm(target);
@@ -30,7 +31,6 @@ AForm* Intern::makeForm(std::string name, std::string target) const {
 					case 2:
 						return new PresidentialPardonForm(target);
 				}
-				std::cout << "Intern creates " << formNames[i] << " form" << std::endl;
 			}
 		}
 		throw Intern::InvalidFormException();

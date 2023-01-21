@@ -2,17 +2,17 @@
 
 PresidentialPardonForm::PresidentialPardonForm(void)
 	: AForm("PresidentialPardonForm", 25, 5), _target("Default") {
-		std::cout << "PresidentialPardonForm created" << std::endl;
+		// std::cout << "PresidentialPardonForm created" << std::endl;
 }
 
 PresidentialPardonForm::PresidentialPardonForm(const std::string target)
 	: AForm("PresidentialPardonForm", 25, 5), _target(target) {
-		std::cout << "PresidentialPardonForm created" << std::endl;
+		// std::cout << "PresidentialPardonForm created" << std::endl;
 }
 
 PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& ref)
 	: AForm(ref), _target(ref.getTarget()) {
-		std::cout << "PresidentialPardonForm copy created" << std::endl;
+		// std::cout << "PresidentialPardonForm copy created" << std::endl;
 }
 PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPardonForm& ref) {
 	AForm::operator=(ref);
@@ -21,7 +21,7 @@ PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPard
 }
 
 PresidentialPardonForm::~PresidentialPardonForm(void) {
-	std::cout << "PresidentialPardonForm destroyed" << std::endl;
+	// std::cout << "PresidentialPardonForm destroyed" << std::endl;
 }
 
 void PresidentialPardonForm::execute(const Bureaucrat& executor) const {
