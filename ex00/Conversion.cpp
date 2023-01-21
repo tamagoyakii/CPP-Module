@@ -1,5 +1,8 @@
 #include "Conversion.hpp"
 
+Conversion::Conversion(void)
+	: _str(""), _isNan(0), _isInf(0), _toc(0), _toi(0), _tof(0), _tod(0) {}
+	
 Conversion::Conversion(std::string str): _str(str), _isNan(false), _isInf(false) {
 	this->_tod = strtod(str.c_str(), NULL);
 	this->_toi = static_cast<int>(this->_tod);
