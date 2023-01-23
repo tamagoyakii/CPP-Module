@@ -1,16 +1,15 @@
 #include "iter.hpp"
 
-void print(const int& a) {
-	std::cout << a << std::endl;
-}
-
 int main(void) {
-	int *arr = new int[6];
+	int arr[10];
+	char brr[10];
 
-	for(int i = 0; i < 6; i++) arr[i] = i;
-	iter(arr, 6, print);
+	for(int i = 0; i < 10; i++) {
+		arr[i] = i;
+		brr[i] = i + 'a';
+	}
+	iter<int>(arr, 10, print<int>);
+	iter<char>(brr, 10, print<char>);
 
-	delete[] arr;
-	
 	return 0;
 }
