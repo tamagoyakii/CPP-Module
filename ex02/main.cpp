@@ -10,16 +10,16 @@ Base* generate(void) {
 
 	switch (rand() % 3) {
 		case 0:
-			std::cout << "class A created" << std::endl;
 			bPtr = new A();
+			std::cout << "class A created" << std::endl;
 			break;
 		case 1:
-			std::cout << "class B created" << std::endl;
 			bPtr = new B();
+			std::cout << "class B created" << std::endl;
 			break;
 		case 2:
-			std::cout << "class C created" << std::endl;
 			bPtr = new C();
+			std::cout << "class C created" << std::endl;
 			break;
 	}
 	return bPtr;
