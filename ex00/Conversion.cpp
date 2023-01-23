@@ -1,10 +1,10 @@
 #include "Conversion.hpp"
 
 Conversion::Conversion(void)
-	: _str(""), _isNan(0), _isInf(0), _toc(0), _toi(0), _tof(0), _tod(0) {}
+	: _str(0), _isNan(0), _isInf(0), _toi(0), _toc(0), _tof(0), _tod(0) {}
 	
-Conversion::Conversion(std::string str): _str(str), _isNan(false), _isInf(false) {
-	this->_tod = strtod(str.c_str(), NULL);
+Conversion::Conversion(char* str): _str(str), _isNan(false), _isInf(false) {
+	this->_tod = strtod(str, NULL);
 	this->_toi = static_cast<int>(this->_tod);
 	this->_toc = static_cast<char>(this->_tod);
 	this->_tof = static_cast<float>(this->_tod);
@@ -48,6 +48,10 @@ void Conversion::printInt(std::ostream& os) const {
 		os << "impossible" << std::endl;
 		return;
 	}
+	if (this->_tod > std::numeric_limits<int>::max() || this->_tod < std::numeric_limits<int>::min()) {
+		os << "impossible" << std::endl;
+		return;
+	}
 	os << this->_toi << std::endl;
 }
 
@@ -61,7 +65,11 @@ void Conversion::printFloat(std::ostream& os) const {
 		os << (this->_tof > 0 ? "inff" : "-inff") << std::endl;
 		return;
 	}
-	os << this->_tof << (this->_tof - this->_toi ? "f" : ".0f") << std::endl;
+	if (this->_tod > std::numeric_limits<float>::max() || this->_tod < -std::numeric_limits<float>::max()) {
+		os << "impossible" << std::endl;
+		return;
+	}
+	os << std::fixed <<	 std::setprecision(1) << this->_tof << (this->_tof - this->_toi == 0 ? "f" : ".0f") << std::endl;
 }
 
 void Conversion::printDouble(std::ostream& os) const {
@@ -74,7 +82,7 @@ void Conversion::printDouble(std::ostream& os) const {
 		os << (this->_tof > 0 ? "inf" : "-inf") << std::endl;
 		return;
 	}
-	os << this->_tod << (this->_tod - this->_toi ? "" : ".0") << std::endl;
+	os << std::fixed << std::setprecision(1) << this->_tod << (this->_tod - this->_toi == 0 ? "" : ".0") << std::endl;
 }
 
 std::ostream& operator<<(std::ostream& os, const Conversion& ref) {

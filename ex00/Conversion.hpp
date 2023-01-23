@@ -2,12 +2,12 @@
 # define CONVERSION_HPP
 
 #include <iostream>
-#include <stdlib.h>
 #include <iomanip>
+#include <cstdlib>
 
 class Conversion {
 	private:
-		std::string _str;
+		char* _str;
 		bool _isNan;
 		bool _isInf;
 		int _toi;
@@ -16,7 +16,7 @@ class Conversion {
 		double _tod;
 		Conversion(void);
 	public:
-		Conversion(std::string str);
+		Conversion(char* str);
 		Conversion(const Conversion& ref);
 		Conversion& operator=(const Conversion& ref);
 		~Conversion(void);
