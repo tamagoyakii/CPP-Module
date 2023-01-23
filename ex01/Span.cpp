@@ -17,6 +17,7 @@ Span::~Span(void) {}
 void Span::addNumber(int n) {
 	if (this->_vector.size() == this->_size) throw FullElementsException();
 	_vector.push_back(n);
+	std::cout << "adding " << n << " success!" << std::endl;
 }
 
 int Span::shortestSpan(void) {
