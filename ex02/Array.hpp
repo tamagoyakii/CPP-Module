@@ -2,6 +2,7 @@
 # define ARRAY_HPP
 
 #include <exception>
+#include <iostream>
 
 template<typename T>
 class Array {
@@ -12,17 +13,18 @@ class Array {
 		Array(void): _arr(new T[0]), _len(0) {}
 		Array(unsigned int n): _arr(new T[n]), _len(n) {}
 		Array(const Array& ref): _arr(new T[ref._len]), _len(ref._len) {
-			for (int i = 0; i < _len; i++) this->_arr[i] = ref._arr[i];
+			for (unsigned int i = 0; i < _len; i++) this->_arr[i] = ref._arr[i];
 		}
 		Array& operator=(const Array& ref) {
 			delete[] this->_arr;
 
 			this->_len = ref._len;
 			this->_arr = new T[this->_len];
-			for (int i = 0; i < _len; i++) this->_arr[i] = ref._arr[i];
+			for (unsigned int i = 0; i < _len; i++) this->_arr[i] = ref._arr[i];
+			return *this;
 		}
 		T& operator[](unsigned int i) {
-			if (i >= _size) throw InvalidIndexException();
+			if (i >= this->_len || i < 0) throw InvalidIndexException();
 			return this->_arr[i];
 		};
 		~Array(void) {
@@ -37,7 +39,7 @@ class Array {
 				const char *what() const throw() {
 					return "exception: index is out of bounds";
 				};
-		}
+		};
 };
 
 #endif
