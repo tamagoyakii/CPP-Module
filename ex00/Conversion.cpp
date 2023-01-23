@@ -69,7 +69,7 @@ void Conversion::printFloat(std::ostream& os) const {
 		os << "impossible" << std::endl;
 		return;
 	}
-	os << std::fixed <<	 std::setprecision(1) << this->_tof << (this->_tof - this->_toi == 0 ? "f" : ".0f") << std::endl;
+	os << std::fixed <<	std::setprecision(1) << this->_tof << "f" << std::endl;
 }
 
 void Conversion::printDouble(std::ostream& os) const {
@@ -82,7 +82,7 @@ void Conversion::printDouble(std::ostream& os) const {
 		os << (this->_tof > 0 ? "inf" : "-inf") << std::endl;
 		return;
 	}
-	os << std::fixed << std::setprecision(1) << this->_tod << (this->_tod - this->_toi == 0 ? "" : ".0") << std::endl;
+	os << std::fixed << std::setprecision(1) << this->_tod << std::endl;
 }
 
 std::ostream& operator<<(std::ostream& os, const Conversion& ref) {
