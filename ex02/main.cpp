@@ -57,6 +57,6 @@ int main(void) {
 		std::cout << *lit << std::endl;
 		++lit;
 	}
-	
+
 	return 0;
 }
