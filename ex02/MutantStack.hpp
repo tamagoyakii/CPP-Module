@@ -16,6 +16,7 @@ class MutantStack : public std::stack<T> {
 			return *this;
 		}
 		~MutantStack(void) {}
+		
 		typedef typename std::stack<T>::container_type::iterator iterator;
 		iterator begin(void) {
 			return this->c.begin();
