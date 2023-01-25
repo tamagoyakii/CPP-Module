@@ -30,7 +30,7 @@ int Span::shortestSpan(void) {
 	for (unsigned int i = 0; i < _vector.size() - 1; i++) {
 		min = std::min(tmp[i + 1] - tmp[i], min);
 	}
-
+	// int 범위 넘을 때의 처리 필요
 	return min;
 }
 
@@ -39,7 +39,7 @@ int Span::longestSpan(void) {
 
 	std::vector<int> tmp = this->_vector;
 	std::sort(tmp.begin(), tmp.end());
-
+	// int 범위 넘을 때의 처리 필요
 	return tmp[tmp.size() - 1] - tmp[0];
 }
 
