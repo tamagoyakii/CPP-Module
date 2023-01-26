@@ -23,7 +23,6 @@ void Span::addNumber(int n) {
 void Span::addNumbers(std::vector<int>::iterator begin, std::vector<int>::iterator end) {
 	if (this->_vector.size() + end - begin > this->_size) throw NotEnoughSpaceException();
 	this->_vector.insert(_vector.end(), begin, end);
-	this->_size += end - begin;
 }
 
 long long Span::shortestSpan(void) {
