@@ -17,10 +17,11 @@ class Span {
 		~Span(void);
 
 		void addNumber(int n);
-		int shortestSpan(void);
-		int longestSpan(void);
+		void addNumbers(std::vector<int>::iterator begin, std::vector<int>::iterator end);
+		long long shortestSpan(void);
+		long long longestSpan(void);
 
-	class FullElementsException : public std::exception {
+	class NotEnoughSpaceException : public std::exception {
 		public:
 			const char* what() const throw();
 	};
