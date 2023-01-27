@@ -2,61 +2,56 @@
 #include <list>
 
 int main(void) {
-	std::cout << std::endl << "-----------stack-----------" << std::endl;
+	std::cout << "-----------stack-----------" << std::endl;
 	MutantStack<int> mstack;
 
 	mstack.push(5);
 	mstack.push(17);
-
-	std::cout << mstack.top() << std::endl;
+	std::cout << mstack.top() << ", ";
 
 	mstack.pop();
-
 	std::cout << mstack.size() << std::endl;
 
-	mstack.push(3);
-	mstack.push(5);
-	mstack.push(737);
-	//[...]
-	mstack.push(0);
-
-	MutantStack<int>::iterator it = mstack.begin();
-	MutantStack<int>::iterator ite = mstack.end();
-
-	++it;
-	--it;
-	while (it != ite) {
-		std::cout << *it << std::endl;
-		++it;
-	}
-	std::stack<int> s(mstack);
-
-	std::cout << std::endl << "-----------list------------" << std::endl;
+	std::cout << "-----------list------------" << std::endl;
 	std::list<int> mlist;
 
 	mlist.push_back(5);
 	mlist.push_back(17);
-
-	std::cout << mlist.back() << std::endl;
+	std::cout << mlist.back() << ", ";
 
 	mlist.pop_back();
+	std::cout << mstack.size() << std::endl;
 
-	std::cout << mlist.size() << std::endl;
+	srand(time(NULL));
+	for (int i = 0; i < 10; i++) {
+		const int tmp = rand() % 10;
+		mstack.push(tmp);
+		mlist.push_back(tmp);
+	}
 
-	mlist.push_back(3);
-	mlist.push_back(5);
-	mlist.push_back(737);
-	mlist.push_back(0);
+	std::cout << "---------iter test---------" << std::endl;
+	MutantStack<int>::iterator sit = mstack.begin();
+	MutantStack<int>::iterator site = mstack.end();
+	++sit;
+	--sit;
+	std::cout << "Stack : ";
+	while (sit != site) {
+		std::cout << *sit << ", ";
+		++sit;
+	}
+	std::cout << std::endl;
+	std::stack<int> s(mstack);
 
 	std::list<int>::iterator lit = mlist.begin();
 	std::list<int>::iterator lite = mlist.end();
-
 	++lit;
 	--lit;
+	std::cout << "List  : ";
 	while (lit != lite) {
-		std::cout << *lit << std::endl;
+		std::cout << *lit << ", ";
 		++lit;
 	}
+	std::cout << std::endl;
 
 	return 0;
 }
