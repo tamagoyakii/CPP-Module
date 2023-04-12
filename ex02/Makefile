@@ -3,7 +3,7 @@ CC = c++
 CXXFLAGS = -Wall -Werror -Wextra -std=c++98
 RM = rm -f
 
-SRCS = ./main.cpp ./PmergeMe.cpp ./PmergeMe.hpp
+SRCS = ./main.cpp ./PmergeMe.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)

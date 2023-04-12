@@ -3,7 +3,7 @@ CC = c++
 CXXFLAGS = -Wall -Werror -Wextra -std=c++98
 RM = rm -f
 
-SRCS = ./main.cpp ./RPN.cpp ./RPN.hpp
+SRCS = ./main.cpp ./RPN.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)
