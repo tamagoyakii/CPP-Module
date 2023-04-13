@@ -1,44 +1,51 @@
 #ifndef BITCOINEXCHANGE_HPP
 #define BITCOINEXCHANGE_HPP
 
+#include <ctime>
 #include <fstream>
 #include <iostream>
 #include <map>
-#include <ctime>
 
 class BitcoinExchange {
-	private:
-		std::ifstream _inputStream;
-		std::ifstream _targetStream;
-		std::map<std::string, float> _targetData;
+  private:
+    std::string _inputFile;
+    std::string _targetFile;
+    std::map<std::string, float> _targetData;
 
-		std::ifstream openFile(std::string fileName);
-		void parseTargetData();
-	public:
-		BitcoinExchange(char* av);
-		BitcoinExchange(const BitcoinExchange& ref);
-		~BitcoinExchange();
+    std::ifstream openFile(std::string fileName);
+    void parseTargetData();
 
-		BitcoinExchange& operator=(const BitcoinExchange& ref);
-		void printExchange();
+  public:
+    BitcoinExchange(char *av);
+    BitcoinExchange(const BitcoinExchange &ref);
+    ~BitcoinExchange();
 
-		class NegativeNumberException : public std::exception {
-			public:
-				const char* what() const throw();
-		};
+    void printExchange();
 
-		class TooLargeNumberException : public std::exception {
-			public:
-				const char* what() const throw();
-		};
+    std::string getInputFile() const;
+    std::string getTargetFile() const;
+    std::map<std::string, float> getTargetData() const;
 
-		class BadInputException : public std::exception {
-				std::string* _message;
-			public:
-				BadInputException(std::string& str) throw();
-				~BadInputException() throw();
-				const char* what() const throw();
-		};
+    BitcoinExchange &operator=(const BitcoinExchange &ref);
+};
+
+class NegativeNumberException : public std::exception {
+  public:
+    const char *what() const throw();
+};
+
+class TooLargeNumberException : public std::exception {
+  public:
+    const char *what() const throw();
+};
+
+class BadInputException : public std::exception {
+    std::string *_message;
+
+  public:
+    BadInputException(std::string &str) throw();
+    ~BadInputException() throw();
+    const char *what() const throw();
 };
 
 #endif
