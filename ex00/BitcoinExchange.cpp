@@ -1,7 +1,6 @@
 #include "BitcoinExchange.hpp"
 
-BitcoinExchange::BitcoinExchange(char *av)
-    : _inputFile(av), _targetFile("data.csv") {
+BitcoinExchange::BitcoinExchange(char *av) : _inputFile(av), _targetFile("data.csv") {
     parseTargetData();
 }
 
@@ -55,13 +54,18 @@ void BitcoinExchange::printExchange() {
             if (atol(value.c_str()) < 0)
                 throw NegativeNumberException();
 
-            std::map<std::string, float>::iterator iter =
-                _targetData.lower_bound(date);
+            std::map<std::string, float>::iterator iter = _targetData.find(date);
 
-            if (iter == _targetData.begin())
-                throw BadInputException(line);
-            std::cout << date << " => " << value << " = "
-                      << (--iter)->second * atof(value.c_str()) << std::endl;
+            if (iter == _targetData.end()) {
+                iter = _targetData.lower_bound(date);
+                if (iter == _targetData.begin())
+                    throw BadInputException(line);
+                std::cout << date << " => " << value << " = "
+                          << (--iter)->second * atof(value.c_str()) << std::endl;
+            } else {
+                std::cout << date << " => " << value << " = " << iter->second * atof(value.c_str())
+                          << std::endl;
+            }
         } catch (std::exception &e) {
             std::cout << "Error: " << e.what() << std::endl;
         }
@@ -72,9 +76,7 @@ std::string BitcoinExchange::getInputFile() const { return _inputFile; }
 
 std::string BitcoinExchange::getTargetFile() const { return _targetFile; }
 
-std::map<std::string, float> BitcoinExchange::getTargetData() const {
-    return _targetData;
-}
+std::map<std::string, float> BitcoinExchange::getTargetData() const { return _targetData; }
 
 BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &ref) {
     if (this != &ref) {
@@ -85,13 +87,9 @@ BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &ref) {
     return *this;
 }
 
-const char *NegativeNumberException::what() const throw() {
-    return "not a positive number.";
-}
+const char *NegativeNumberException::what() const throw() { return "not a positive number."; }
 
-const char *TooLargeNumberException::what() const throw() {
-    return "too large number.";
-}
+const char *TooLargeNumberException::what() const throw() { return "too large number."; }
 
 BadInputException::BadInputException(std::string &str) throw() {
     _message = new std::string("bad input => " + str);
@@ -99,6 +97,4 @@ BadInputException::BadInputException(std::string &str) throw() {
 
 BadInputException::~BadInputException() throw() { delete _message; }
 
-const char *BadInputException::what() const throw() {
-    return _message->c_str();
-}
+const char *BadInputException::what() const throw() { return _message->c_str(); }
