@@ -42,8 +42,10 @@ double RPN::getResult() {
             else if (token == "/")
                 _numberStack.push(leftOperand / rightOperand);
         } else {
-            throw token;
+            throw "Error";
         }
     }
+    if (_numberStack.size() != 1)
+        throw "Error";
     return _numberStack.top();
 }

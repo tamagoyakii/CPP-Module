@@ -10,8 +10,8 @@ int main(int ac, char **av) {
 
     try {
         std::cout << expression.getResult() << std::endl;
-    } catch (std::string e) {
-        std::cout << "Error" << std::endl;
+    } catch (const char *e) {
+        std::cout << e << std::endl;
     }
 
     return 0;
