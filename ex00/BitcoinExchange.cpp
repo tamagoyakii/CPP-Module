@@ -53,6 +53,7 @@ void BitcoinExchange::printExchange() {
                 throw TooLargeNumberException();
             if (atol(value.c_str()) < 0)
                 throw NegativeNumberException();
+            // 1000.1 처리해야 함
 
             std::map<std::string, float>::iterator iter = _targetData.find(date);
 
