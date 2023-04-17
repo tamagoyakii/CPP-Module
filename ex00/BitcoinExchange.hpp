@@ -6,7 +6,7 @@
 #include <fstream>
 #include <iostream>
 #include <map>
-// #include <sstream>
+#include <sstream>
 
 class BitcoinExchange {
   private:

@@ -81,17 +81,20 @@ void BitcoinExchange::printResult(std::pair<std::string, std::string> pair) {
     if (it->first != pair.first)
         it--;
 
-    float result = round(it->second * atof(pair.second.c_str()) * 1000000) / 1000000;
+    float floatRes = it->second * atof(pair.second.c_str());
 
-    // std::stringstream ss;
-    // ss << result;
-    // std::string res = ss.str();
+    std::stringstream ss;
+    std::string stringRes;
 
-    // std::cout << res << std::endl;
+    ss << floatRes;
+    stringRes = ss.str();
 
-    // std::cout << pair.first << " => " << pair.second << " = " << std::setprecision(7) << result
-    //           << std::endl;
-    std::cout << pair.first << " => " << pair.second << " = " << result << std::endl;
+    if (stringRes.find('-') != std::string::npos || stringRes.find('+') != std::string::npos) {
+        std::cout << pair.first << " => " << pair.second << " = " << std::fixed
+                  << std::setprecision(6) << round(floatRes * 1000000) / 1000000 << std::endl;
+    } else {
+        std::cout << pair.first << " => " << pair.second << " = " << stringRes << std::endl;
+    }
 }
 
 void BitcoinExchange::execute() {
