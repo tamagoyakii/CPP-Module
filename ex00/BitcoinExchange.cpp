@@ -35,38 +35,76 @@ void BitcoinExchange::parseTargetData() {
     }
 }
 
-void BitcoinExchange::printExchange() {
+std::pair<std::string, std::string> BitcoinExchange::validateInput(std::string input) {
+    size_t pos = input.find(" | ");
+    if (pos == std::string::npos)
+        throw BadInputException(input);
+
+    std::string date = input.substr(0, pos);
+    std::string value = input.substr(pos + 3);
+    int pointFlag = 0;
+
+    for (size_t i = 0; i < value.length(); ++i) {
+        if (value[i] == '-') {
+            if (i != 0)
+                throw BadInputException(input);
+        } else if (value[i] == '.') {
+            if (pointFlag)
+                throw BadInputException(input);
+            pointFlag = 1;
+        } else if (!isdigit(value[i])) {
+            throw BadInputException(input);
+        }
+    }
+    return std::pair<std::string, std::string>(date, value);
+}
+
+void BitcoinExchange::validateValue(std::string str) {
+    size_t pos = str.find(".");
+
+    if (pos != std::string::npos && str.substr(pos + 1).length() > 6)
+        throw TooLongDecimalException();
+
+    double value = strtod(str.c_str(), NULL);
+
+    if (value > 1000)
+        throw TooLargeNumberException();
+    if (value < 0)
+        throw NegativeNumberException();
+}
+
+void BitcoinExchange::printResult(std::pair<std::string, std::string> pair) {
+    std::map<std::string, float>::iterator it = _targetData.lower_bound(pair.first);
+
+    if (it == _targetData.begin())
+        throw NoSuchDateException();
+    if (it->first != pair.first)
+        it--;
+
+    float result = round(it->second * atof(pair.second.c_str()) * 1000000) / 1000000;
+
+    // std::stringstream ss;
+    // ss << result;
+    // std::string res = ss.str();
+
+    // std::cout << res << std::endl;
+
+    // std::cout << pair.first << " => " << pair.second << " = " << std::setprecision(7) << result
+    //           << std::endl;
+    std::cout << pair.first << " => " << pair.second << " = " << result << std::endl;
+}
+
+void BitcoinExchange::execute() {
     std::ifstream inputStream = openFile(_inputFile);
     std::string line;
 
     std::getline(inputStream, line);
     while (std::getline(inputStream, line)) {
         try {
-            size_t pos = line.find(" | ");
-            if (pos == std::string::npos)
-                throw BadInputException(line);
+            std::pair<std::string, std::string> pair = validateInput(line);
 
-            std::string date = line.substr(0, pos);
-            std::string value = line.substr(pos + 3);
-
-            if (atol(value.c_str()) > 1000)
-                throw TooLargeNumberException();
-            if (atol(value.c_str()) < 0)
-                throw NegativeNumberException();
-            // 1000.1 처리해야 함
-
-            std::map<std::string, float>::iterator iter = _targetData.find(date);
-
-            if (iter == _targetData.end()) {
-                iter = _targetData.lower_bound(date);
-                if (iter == _targetData.begin())
-                    throw BadInputException(line);
-                std::cout << date << " => " << value << " = "
-                          << (--iter)->second * atof(value.c_str()) << std::endl;
-            } else {
-                std::cout << date << " => " << value << " = " << iter->second * atof(value.c_str())
-                          << std::endl;
-            }
+            validateValue(pair.second);
+            printResult(pair);
         } catch (std::exception &e) {
             std::cout << "Error: " << e.what() << std::endl;
         }
@@ -91,6 +129,10 @@ BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &ref) {
 const char *NegativeNumberException::what() const throw() { return "not a positive number."; }
 
 const char *TooLargeNumberException::what() const throw() { return "too large number."; }
+
+const char *TooLongDecimalException::what() const throw() { return "too long decimal."; }
+
+const char *NoSuchDateException::what() const throw() { return "no such date."; }
 
 BadInputException::BadInputException(std::string &str) throw() {
     _message = new std::string("bad input => " + str);

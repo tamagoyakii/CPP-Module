@@ -1,10 +1,12 @@
 #ifndef BITCOINEXCHANGE_HPP
 #define BITCOINEXCHANGE_HPP
 
+#include <cmath>
 #include <ctime>
 #include <fstream>
 #include <iostream>
 #include <map>
+// #include <sstream>
 
 class BitcoinExchange {
   private:
@@ -14,13 +16,16 @@ class BitcoinExchange {
 
     std::ifstream openFile(std::string fileName);
     void parseTargetData();
+    std::pair<std::string, std::string> validateInput(std::string input);
+    void validateValue(std::string str);
+    void printResult(std::pair<std::string, std::string> pair);
 
   public:
     BitcoinExchange(char *av);
     BitcoinExchange(const BitcoinExchange &ref);
     ~BitcoinExchange();
 
-    void printExchange();
+    void execute();
 
     std::string getInputFile() const;
     std::string getTargetFile() const;
@@ -39,6 +44,15 @@ class TooLargeNumberException : public std::exception {
     const char *what() const throw();
 };
 
+class TooLongDecimalException : public std::exception {
+  public:
+    const char *what() const throw();
+};
+
+class NoSuchDateException : public std::exception {
+  public:
+    const char *what() const throw();
+};
 class BadInputException : public std::exception {
     std::string *_message;
 
