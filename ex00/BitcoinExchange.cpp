@@ -89,7 +89,7 @@ void BitcoinExchange::printResult(std::pair<std::string, std::string> pair) {
     ss << floatRes;
     stringRes = ss.str();
 
-    if (stringRes.find('-') != std::string::npos || stringRes.find('+') != std::string::npos) {
+    if (stringRes.find('e') != std::string::npos) {
         std::cout << pair.first << " => " << pair.second << " = " << std::fixed
                   << std::setprecision(6) << round(floatRes * 1000000) / 1000000 << std::endl;
     } else {
