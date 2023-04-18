@@ -9,13 +9,13 @@ PmergeMe::~PmergeMe() {}
 
 void PmergeMe::insertSort(std::vector<int> &vec) {
     int n = vec.size();
+
     for (int i = 1; i < n; ++i) {
         int key = vec[i];
-        int j = i - 1;
-        while (j >= 0 && vec[j] > key) {
+        int j = i;
+
+        while (--j >= 0 && vec[j] > key)
             vec[j + 1] = vec[j];
-            --j;
-        }
         vec[j + 1] = key;
     }
 }
@@ -42,10 +42,8 @@ void PmergeMe::merge(std::deque<int> &deq, int left, int mid, int right) {
             deq[k] = rightDeq[j++];
         ++k;
     }
-
     while (i < n1)
         deq[k++] = leftDeq[i++];
-
     while (j < n2)
         deq[k++] = rightDeq[j++];
 }
