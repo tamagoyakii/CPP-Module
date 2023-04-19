@@ -24,10 +24,15 @@ double RPN::getResult() {
     double number;
 
     while (lineStream >> token) {
+        if (token.length() > 1)
+            throw "Error";
         if (isdigit(token[0])) {
             std::istringstream(token) >> number;
             _numberStack.push(number);
         } else if (token == "+" || token == "-" || token == "*" || token == "/") {
+            if (_numberStack.size() < 2)
+                throw "Error";
+
             double rightOperand = _numberStack.top();
             _numberStack.pop();
             double leftOperand = _numberStack.top();
