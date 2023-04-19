@@ -10,19 +10,15 @@ BitcoinExchange::BitcoinExchange(const BitcoinExchange &ref)
 
 BitcoinExchange::~BitcoinExchange() {}
 
-std::ifstream BitcoinExchange::openFile(std::string fileName) {
-    std::ifstream stream;
-
-    stream.open(fileName);
-    if (!stream) {
+void BitcoinExchange::parseTargetData() {
+    std::ifstream targetStream;
+    
+    targetStream.open(_targetFile);
+    if (!targetStream) {
         std::cout << "Error: could not open file." << std::endl;
         exit(EXIT_FAILURE);
     }
-    return stream;
-}
 
-void BitcoinExchange::parseTargetData() {
-    std::ifstream targetStream = openFile(_targetFile);
     std::string line;
 
     std::getline(targetStream, line);
@@ -98,7 +94,14 @@ void BitcoinExchange::printResult(std::pair<std::string, std::string> pair) {
 }
 
 void BitcoinExchange::execute() {
-    std::ifstream inputStream = openFile(_inputFile);
+    std::ifstream inputStream;
+    
+    inputStream.open(_inputFile);
+    if (!inputStream) {
+        std::cout << "Error: could not open file." << std::endl;
+        exit(EXIT_FAILURE);
+    }
+
     std::string line;
 
     std::getline(inputStream, line);

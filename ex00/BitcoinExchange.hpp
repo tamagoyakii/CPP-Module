@@ -14,7 +14,6 @@ class BitcoinExchange {
     std::string _targetFile;
     std::map<std::string, float> _targetData;
 
-    std::ifstream openFile(std::string fileName);
     void parseTargetData();
     std::pair<std::string, std::string> validateInput(std::string input);
     void validateValue(std::string str);
