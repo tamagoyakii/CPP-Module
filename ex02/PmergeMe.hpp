@@ -1,48 +1,26 @@
 #ifndef PMERGEME_HPP
 #define PMERGEME_HPP
 
-#include <ctime>
-#include <deque>
-#include <iomanip>
-#include <iostream>
-#include <limits>
-#include <sstream>
+#include <list>
 #include <vector>
 
 class PmergeMe {
   private:
-    std::vector<int> _vec;
-    std::deque<int> _deq;
-    int _size;
-
-    template <typename T> void printContainer(std::string str, T res) {
-        typename T::iterator it = res.begin();
-        typename T::iterator ite = res.end();
-
-        std::cout << str;
-        for (; it != ite; it++)
-            std::cout << *it << " ";
-        std::cout << std::endl;
-    }
-
-    void insertSort(std::vector<int> &vec);
-    void mergeSort(std::deque<int> &deq, int left, int right);
-    void merge(std::deque<int> &deq, int left, int mid, int right);
+    void insertSort(std::vector<int> &numbers, int left, int right);
+    void insertSort(std::list<int>::iterator left, std::list<int>::iterator right);
+    void mergeSort(std::vector<int> &numbers, int left, int mid, int right);
+    void mergeSort(std::list<int>::iterator left, std::list<int>::iterator mid,
+                   std::list<int>::iterator right);
 
   public:
     PmergeMe();
-    PmergeMe(const PmergeMe &ref);
     ~PmergeMe();
-
-    void addNumber(int num);
-    void setSize(const int num);
-    void execute();
-
-    std::vector<int> getVector() const;
-    std::deque<int> getDeque() const;
-    int getSize() const;
-
+    PmergeMe(const PmergeMe &ref);
     PmergeMe &operator=(const PmergeMe &ref);
+
+    void mergeInsertSort(std::vector<int> &numbers, int left, int right);
+    void mergeInsertSort(std::list<int> &numbers, std::list<int>::iterator left,
+                         std::list<int>::iterator right);
 };
 
 #endif
