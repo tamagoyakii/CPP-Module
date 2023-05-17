@@ -21,7 +21,7 @@ template <typename T> void addNumbers(int ac, char *av[], T &container) {
         if (isValidNumber(end, number))
             container.push_back(number);
         else {
-            std::cout << "Error: invalid element" << std::endl;
+            std::cout << "Error: invalid element." << std::endl;
             exit(1);
         }
     }
@@ -39,10 +39,10 @@ template <typename T> void printContainer(std::string str, T container) {
 
 int main(int ac, char *av[]) {
     if (ac < 3) {
-        std::cout << "Error: need more arguments" << std::endl;
+        std::cout << "Error: need more arguments." << std::endl;
         exit(EXIT_FAILURE);
     } else if (ac > 3001) {
-        std::cout << "Error: too many arguments" << std::endl;
+        std::cout << "Error: too many arguments." << std::endl;
         exit(EXIT_FAILURE);
     }
 

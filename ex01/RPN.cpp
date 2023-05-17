@@ -33,11 +33,11 @@ int RPN::calculate(long long leftOperand, long long rightOperand, char op) {
         break;
     case '/':
         if (rightOperand == 0)
-            throw std::out_of_range("no division by zero");
+            throw std::out_of_range("no division by zero.");
         result = leftOperand / rightOperand;
     }
     if (result > INT_MAX || result < INT_MIN)
-        throw std::out_of_range("overflow");
+        throw std::out_of_range("overflow.");
     return result;
 }
 
@@ -48,13 +48,13 @@ int RPN::getResult() {
 
     while (lineStream >> token) {
         if (token.length() > 1)
-            throw std::invalid_argument("invalid element");
+            throw std::invalid_argument("invalid element.");
         if (isdigit(token[0])) {
             std::istringstream(token) >> number;
             _numberStack.push(number);
         } else if (token == "+" || token == "-" || token == "*" || token == "/") {
             if (_numberStack.size() < 2)
-                throw std::invalid_argument("not enough stack");
+                throw std::invalid_argument("not enough stack.");
 
             int rightOperand = _numberStack.top();
             _numberStack.pop();
@@ -63,10 +63,10 @@ int RPN::getResult() {
 
             _numberStack.push(calculate(leftOperand, rightOperand, token[0]));
         } else {
-            throw std::invalid_argument("invalid element");
+            throw std::invalid_argument("invalid element.");
         }
     }
     if (_numberStack.size() != 1)
-        throw std::invalid_argument("finish the operation");
+        throw std::invalid_argument("finish the operation.");
     return _numberStack.top();
 }

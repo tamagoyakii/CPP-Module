@@ -45,7 +45,7 @@ bool BitcoinExchange::isValidNumber(const char *end, double number) {
     if (number > 1000)
         throw std::out_of_range("too large number.");
     if (number < 0)
-        throw std::out_of_range("not a positive number");
+        throw std::out_of_range("not a positive number.");
     return true;
 }
 
