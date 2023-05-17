@@ -1,19 +1,26 @@
 #include "BitcoinExchange.hpp"
 
-BitcoinExchange::BitcoinExchange(char *av) : _inputFile(av), _targetFile("data.csv") {
-    parseTargetData();
+BitcoinExchange::BitcoinExchange() {}
+
+BitcoinExchange::BitcoinExchange(char *av, std::string fileName)
+    : _inputFileName(av), _dataFileName(fileName) {
+    if (fileName.substr(fileName.size() - 4, 4) != ".csv") {
+        std::cout << "Error: invalid file extension." << std::endl;
+        exit(EXIT_FAILURE);
+    }
+    parseCsvFile();
 }
 
 BitcoinExchange::BitcoinExchange(const BitcoinExchange &ref)
-    : _inputFile(ref.getInputFile()), _targetFile(ref.getTargetFile()),
-      _targetData(ref.getTargetData()) {}
+    : _inputFileName(ref.getInputFileName()), _dataFileName(ref.getDataFileName()),
+      _data(ref.getData()) {}
 
 BitcoinExchange::~BitcoinExchange() {}
 
-void BitcoinExchange::parseTargetData() {
+void BitcoinExchange::parseCsvFile() {
     std::ifstream targetStream;
-    
-    targetStream.open(_targetFile);
+
+    targetStream.open(_dataFileName);
     if (!targetStream) {
         std::cout << "Error: could not open file." << std::endl;
         exit(EXIT_FAILURE);
@@ -27,57 +34,45 @@ void BitcoinExchange::parseTargetData() {
         std::string date = line.substr(0, pos);
         std::string value = line.substr(pos + 1);
 
-        _targetData[date] = atof(value.c_str());
+        _data[date] = atof(value.c_str());
     }
+    targetStream.close();
 }
 
-std::pair<std::string, std::string> BitcoinExchange::validateInput(std::string input) {
+bool BitcoinExchange::isValidNumber(const char *end, double number) {
+    if (*end != '\0')
+        return false;
+    if (number > 1000)
+        throw std::out_of_range("too large number.");
+    if (number < 0)
+        throw std::out_of_range("not a positive number");
+    return true;
+}
+
+std::pair<std::string, float> BitcoinExchange::parseTxtFileByLine(std::string input) {
     size_t pos = input.find(" | ");
     if (pos == std::string::npos)
-        throw BadInputException(input);
+        throw std::invalid_argument("bad input => " + input);
 
+    char *end;
     std::string date = input.substr(0, pos);
-    std::string value = input.substr(pos + 3);
-    int pointFlag = 0;
+    double value = strtod(input.substr(pos + 3).c_str(), &end);
 
-    for (size_t i = 0; i < value.length(); ++i) {
-        if (value[i] == '-') {
-            if (i != 0)
-                throw BadInputException(input);
-        } else if (value[i] == '.') {
-            if (pointFlag)
-                throw BadInputException(input);
-            pointFlag = 1;
-        } else if (!isdigit(value[i])) {
-            throw BadInputException(input);
-        }
-    }
-    return std::pair<std::string, std::string>(date, value);
+    if (isValidNumber(end, value))
+        return std::pair<std::string, float>(date, value);
+    else
+        throw std::invalid_argument("bad input => " + input);
 }
 
-void BitcoinExchange::validateValue(std::string str) {
-    size_t pos = str.find(".");
+void BitcoinExchange::printResult(std::pair<std::string, float> input) {
+    std::map<std::string, float>::iterator it = _data.lower_bound(input.first);
 
-    if (pos != std::string::npos && str.substr(pos + 1).length() > 6)
-        throw TooLongDecimalException();
-
-    double value = strtod(str.c_str(), NULL);
-
-    if (value > 1000)
-        throw TooLargeNumberException();
-    if (value < 0)
-        throw NegativeNumberException();
-}
-
-void BitcoinExchange::printResult(std::pair<std::string, std::string> pair) {
-    std::map<std::string, float>::iterator it = _targetData.lower_bound(pair.first);
-
-    if (it == _targetData.begin())
-        throw NoSuchDateException();
-    if (it->first != pair.first)
+    if (it == _data.begin())
+        throw std::invalid_argument("no such date.");
+    if (it->first != input.first)
         it--;
 
-    float floatRes = it->second * atof(pair.second.c_str());
+    float floatRes = it->second * input.second;
 
     std::stringstream ss;
     std::string stringRes;
@@ -86,17 +81,17 @@ void BitcoinExchange::printResult(std::pair<std::string, std::string> pair) {
     stringRes = ss.str();
 
     if (stringRes.find('e') != std::string::npos) {
-        std::cout << pair.first << " => " << pair.second << " = " << std::fixed
+        std::cout << input.first << " => " << input.second << " = " << std::fixed
                   << std::setprecision(6) << round(floatRes * 1000000) / 1000000 << std::endl;
     } else {
-        std::cout << pair.first << " => " << pair.second << " = " << stringRes << std::endl;
+        std::cout << input.first << " => " << input.second << " = " << stringRes << std::endl;
     }
 }
 
 void BitcoinExchange::execute() {
     std::ifstream inputStream;
-    
-    inputStream.open(_inputFile);
+
+    inputStream.open(_inputFileName);
     if (!inputStream) {
         std::cout << "Error: could not open file." << std::endl;
         exit(EXIT_FAILURE);
@@ -107,43 +102,26 @@ void BitcoinExchange::execute() {
     std::getline(inputStream, line);
     while (std::getline(inputStream, line)) {
         try {
-            std::pair<std::string, std::string> pair = validateInput(line);
-
-            validateValue(pair.second);
-            printResult(pair);
+            std::pair<std::string, float> inputPair = parseTxtFileByLine(line);
+            printResult(inputPair);
         } catch (std::exception &e) {
             std::cout << "Error: " << e.what() << std::endl;
         }
     }
+    inputStream.close();
 }
 
-std::string BitcoinExchange::getInputFile() const { return _inputFile; }
+std::string BitcoinExchange::getInputFileName() const { return _inputFileName; }
 
-std::string BitcoinExchange::getTargetFile() const { return _targetFile; }
+std::string BitcoinExchange::getDataFileName() const { return _dataFileName; }
 
-std::map<std::string, float> BitcoinExchange::getTargetData() const { return _targetData; }
+std::map<std::string, float> BitcoinExchange::getData() const { return _data; }
 
 BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &ref) {
     if (this != &ref) {
-        this->_inputFile = ref.getInputFile();
-        this->_targetFile = ref.getTargetFile();
-        this->_targetData = ref.getTargetData();
+        this->_inputFileName = ref.getInputFileName();
+        this->_dataFileName = ref.getDataFileName();
+        this->_data = ref.getData();
     }
     return *this;
 }
-
-const char *NegativeNumberException::what() const throw() { return "not a positive number."; }
-
-const char *TooLargeNumberException::what() const throw() { return "too large number."; }
-
-const char *TooLongDecimalException::what() const throw() { return "too long decimal."; }
-
-const char *NoSuchDateException::what() const throw() { return "no such date."; }
-
-BadInputException::BadInputException(std::string &str) throw() {
-    _message = new std::string("bad input => " + str);
-}
-
-BadInputException::~BadInputException() throw() { delete _message; }
-
-const char *BadInputException::what() const throw() { return _message->c_str(); }

@@ -6,7 +6,9 @@ int main(int ac, char **av) {
         exit(EXIT_FAILURE);
     }
 
-    BitcoinExchange a(av[1]);
+    BitcoinExchange a(av[1], "data.csv");
+
     a.execute();
+
     return 0;
 }
