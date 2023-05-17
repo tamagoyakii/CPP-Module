@@ -22,7 +22,6 @@ void PmergeMe::insertSort(std::vector<int> &numbers, int left, int right) {
     }
 }
 
-#include <iostream>
 void PmergeMe::insertSort(std::list<int>::iterator left, std::list<int>::iterator right) {
     for (std::list<int>::iterator i = left; i != right; ++i) {
         int key = *i;
