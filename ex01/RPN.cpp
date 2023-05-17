@@ -16,41 +16,57 @@ RPN &RPN::operator=(const RPN &ref) {
 
 std::string RPN::getLine() const { return _line; }
 
-std::stack<double> RPN::getNumbers() const { return _numberStack; }
+std::stack<long long> RPN::getNumbers() const { return _numberStack; }
 
-double RPN::getResult() {
+int RPN::calculate(long long leftOperand, long long rightOperand, char op) {
+    long long result;
+
+    switch (op) {
+    case '+':
+        result = leftOperand + rightOperand;
+        break;
+    case '-':
+        result = leftOperand - rightOperand;
+        break;
+    case '*':
+        result = leftOperand * rightOperand;
+        break;
+    case '/':
+        if (rightOperand == 0)
+            throw "Error: no division by zero";
+        result = leftOperand / rightOperand;
+    }
+    if (result > INT_MAX || result < INT_MIN)
+        throw "Error: overflow";
+    return result;
+}
+
+int RPN::getResult() {
     std::stringstream lineStream(_line);
     std::string token;
-    double number;
+    int number;
 
     while (lineStream >> token) {
         if (token.length() > 1)
-            throw "Error";
+            throw "Error: invalid element";
         if (isdigit(token[0])) {
             std::istringstream(token) >> number;
             _numberStack.push(number);
         } else if (token == "+" || token == "-" || token == "*" || token == "/") {
             if (_numberStack.size() < 2)
-                throw "Error";
+                throw "Error: not enough stack";
 
-            double rightOperand = _numberStack.top();
+            int rightOperand = _numberStack.top();
             _numberStack.pop();
-            double leftOperand = _numberStack.top();
+            int leftOperand = _numberStack.top();
             _numberStack.pop();
 
-            if (token == "+")
-                _numberStack.push(leftOperand + rightOperand);
-            else if (token == "-")
-                _numberStack.push(leftOperand - rightOperand);
-            else if (token == "*")
-                _numberStack.push(leftOperand * rightOperand);
-            else if (token == "/")
-                _numberStack.push(leftOperand / rightOperand);
+            _numberStack.push(calculate(leftOperand, rightOperand, token[0]));
         } else {
-            throw "Error";
+            throw "Error: invalid element";
         }
     }
     if (_numberStack.size() != 1)
-        throw "Error";
+        throw "Error: finish the operation";
     return _numberStack.top();
 }

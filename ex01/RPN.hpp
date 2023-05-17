@@ -8,7 +8,9 @@
 class RPN {
   private:
     std::string _line;
-    std::stack<double> _numberStack;
+    std::stack<long long> _numberStack;
+
+    int calculate(long long leftOperand, long long rightOperand, char op);
 
   public:
     RPN(std::string str);
@@ -16,8 +18,8 @@ class RPN {
     RPN(const RPN &ref);
 
     std::string getLine() const;
-    std::stack<double> getNumbers() const;
-    double getResult();
+    std::stack<long long> getNumbers() const;
+    int getResult();
 
     RPN &operator=(const RPN &ref);
 };
