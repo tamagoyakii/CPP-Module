@@ -63,18 +63,18 @@ int main(int ac, char *av[]) {
     p.mergeInsertSort(listSort, listSort.begin(), listSort.end());
     clock_t listEnd = clock();
 
-    double vectorTime = static_cast<double>(vectorEnd - vectorStart) / 1000;
-    double listTime = static_cast<double>(listEnd - listStart) / 1000;
+    double vectorTime = static_cast<double>(vectorEnd - vectorStart) / CLOCKS_PER_SEC;
+    double listTime = static_cast<double>(listEnd - listStart) / CLOCKS_PER_SEC;
 
     printContainer("Before: ", before);
     printContainer("After: ", vectorSort);
 
     std::cout << "Time to process a range of " << vectorSort.size()
-              << " elements with std::vector : " << std::fixed << std::setprecision(5) << vectorTime
-              << " us" << std::endl;
+              << " elements with std::vector : " << std::fixed << std::setprecision(6) << vectorTime
+              << " s" << std::endl;
     std::cout << "Time to process a range of " << listSort.size()
-              << " elements with std::list : " << std::fixed << std::setprecision(5) << listTime
-              << " us" << std::endl;
+              << " elements with std::list : " << std::fixed << std::setprecision(6) << listTime
+              << " s" << std::endl;
 
     return 0;
 }
